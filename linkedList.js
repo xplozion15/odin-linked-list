@@ -128,11 +128,17 @@ class LinkedList {
   }
 
     toString() {
-
-        
+      let string = "";
+            let tempVariable = this.head;
+            while(tempVariable !== null) {
+              string = string + ` (${tempVariable.value}) ->`
+              tempVariable = tempVariable.nextNode;
+            }
+            
+            return string + ` null`;
     }
 
-
+    
 }
 
 
@@ -150,5 +156,5 @@ let newLinkedList = new LinkedList();
 console.log(newLinkedList);
 newLinkedList.append("first node");
 newLinkedList.append("second node");
-
-console.log(newLinkedList.find("second node"))
+newLinkedList.prepend("prepended");
+console.log(newLinkedList.toString())
