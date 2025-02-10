@@ -81,16 +81,17 @@ class LinkedList {
   };
 
   pop() {
-
-        let tempVariable = this.head;
-        while(tempVariable !== null) {
-            if(tempVariable.nextNode === null) {
-                tempVariable = null;
-                return;
-            }
-            tempVariable = tempVariable.nextNode;
+    let previousNode;
+    let tempVariable = this.head;
+    while(tempVariable !== null) {
+        if(tempVariable.nextNode === null) {
+            previousNode.nextNode = null;
+            return;
         }
-  }
+        previousNode = tempVariable;
+        tempVariable = tempVariable.nextNode;
+    }
+}
 
   contains(value) {
    
@@ -136,9 +137,7 @@ class LinkedList {
             }
             
             return string + ` null`;
-    }
-
-    
+    }  
 }
 
 
@@ -152,9 +151,12 @@ class Node {
 
 //creating/initializing a linkedlist
 
-let newLinkedList = new LinkedList();
-console.log(newLinkedList);
-newLinkedList.append("first node");
-newLinkedList.append("second node");
-newLinkedList.prepend("prepended");
-console.log(newLinkedList.toString())
+const list = new LinkedList();
+
+list.append("dog");
+list.append("cat");
+list.append("parrot");
+list.append("hamster");
+list.append("snake");
+list.append("turtle");
+console.log(list.toString());
