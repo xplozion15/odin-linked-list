@@ -21,6 +21,19 @@ class LinkedList {
                             tempVariable = tempVariable.nextNode;                                
             }     
         }
+
+
+        prepend(value) {
+            const newNode = new Node(value);
+                if(this.head === null) {
+                    this.head = newNode;
+                }   
+
+                else {
+                    newNode.nextNode = this.head;
+                    this.head = newNode;
+                }
+        }
     };
 
 
@@ -39,6 +52,7 @@ let newLinkedList = new LinkedList();
 console.log(newLinkedList);
 newLinkedList.append("first node");
 newLinkedList.append("second node");
-newLinkedList.append("third node");
+newLinkedList.prepend("prepended value");
+
 console.log(newLinkedList);
 
