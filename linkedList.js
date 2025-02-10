@@ -67,10 +67,75 @@ class LinkedList {
     }
   }
 
+  at(index) {
+        let tempVariable = this.head;
+        for(let currentIndex=0;currentIndex<index+1;currentIndex++){
+                    if(index === currentIndex) {
+                        return tempVariable;
+                    }
+                    else {
+                        tempVariable = tempVariable.nextNode;
+                    }
+        }
 
+  };
+
+  pop() {
+
+        let tempVariable = this.head;
+        while(tempVariable !== null) {
+            if(tempVariable.nextNode === null) {
+                tempVariable = null;
+                return;
+            }
+            tempVariable = tempVariable.nextNode;
+        }
+  }
+
+  contains(value) {
+   
+       let tempVariable = this.head;
+       while(tempVariable !==null) {
+          if(tempVariable.value === value) {
+            return true;
+          } 
+          tempVariable = tempVariable.nextNode;
+
+       }
+
+       return false;
+
+  }
+
+  find(value) {
+      let index = 0;
+
+      let tempVariable = this.head
+      for(let i = 0;i<index+1;i++) {
+
+          if(tempVariable === null) {
+            return null;
+          }
+
+          if(tempVariable.value === value) {
+            return index;
+          }
+          else {
+          tempVariable = tempVariable.nextNode;
+          index++;
+          }         
+      }
+  }
+
+    toString() {
+
+        
+    }
 
 
 }
+
+
 
 class Node {
   constructor(value = null, nextNode = null) {
@@ -85,6 +150,5 @@ let newLinkedList = new LinkedList();
 console.log(newLinkedList);
 newLinkedList.append("first node");
 newLinkedList.append("second node");
-newLinkedList.prepend("prepended value");
-console.log(newLinkedList);
-console.log(newLinkedList.tail())
+
+console.log(newLinkedList.find("second node"))
