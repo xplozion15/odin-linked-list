@@ -1,9 +1,7 @@
-// constructor classes
-
 class LinkedList {
   constructor(head = null) {
     this.head = head;
-  }
+  };
 
   append(value) {
     if (this.head === null) {
@@ -20,7 +18,7 @@ class LinkedList {
       }
       tempVariable = tempVariable.nextNode;
     }
-  }
+  };
 
   prepend(value) {
     const newNode = new Node(value);
@@ -30,7 +28,7 @@ class LinkedList {
       newNode.nextNode = this.head;
       this.head = newNode;
     }
-  }
+  };
 
   size() {
     let size = 0;
@@ -39,120 +37,119 @@ class LinkedList {
     }
     let tempVariable = this.head;
     while (tempVariable !== null) {
-
-      if (tempVariable.nextNode === null || tempVariable.nextNode !== null) {
-            size++;
-      }
+      size++;
       tempVariable = tempVariable.nextNode;
     }
     return size;
-  }
+  };
 
-  head() {
+  getHead() {
     return this.head;
-  }
+  };
 
-  tail() {
-    if(this.head === null) {
-        return null;
-    }
-    else {
-        let tempVariable = this.head;
-        while(tempVariable !== null) {
-            if(tempVariable.nextNode === null) {
-                return tempVariable;
-            }
-            tempVariable = tempVariable.nextNode;
+  getTail() {
+    if (this.head === null) {
+      return null;
+    } else {
+      let tempVariable = this.head;
+      while (tempVariable !== null) {
+        if (tempVariable.nextNode === null) {
+          return tempVariable;
         }
+        tempVariable = tempVariable.nextNode;
+      }
     }
-  }
+  };
 
   at(index) {
-        let tempVariable = this.head;
-        for(let currentIndex=0;currentIndex<index+1;currentIndex++){
-                    if(index === currentIndex) {
-                        return tempVariable;
-                    }
-                    else {
-                        tempVariable = tempVariable.nextNode;
-                    }
-        }
-
+    let size = this.size();
+    let tempVariable = this.head;
+    let currentIndex = 0;
+    while (currentIndex <= index) {
+      if (index === currentIndex) {
+        return tempVariable;
+      } else if (index >= size) {
+        return null;
+      }
+      tempVariable = tempVariable.nextNode;
+      currentIndex++;
+    }
+    return null;
   };
 
   pop() {
+    let size = this.size();
     let previousNode;
     let tempVariable = this.head;
-    while(tempVariable !== null) {
-        if(tempVariable.nextNode === null) {
-            previousNode.nextNode = null;
-            return;
-        }
-        previousNode = tempVariable;
-        tempVariable = tempVariable.nextNode;
+
+    if (size === 0) {
+      return;
     }
-}
+
+    if (size === 1) {
+      this.head = null;
+      return;
+    }
+
+    while (tempVariable !== null) {
+      if (tempVariable.nextNode === null) {
+        previousNode.nextNode = null;
+        return;
+      }
+      previousNode = tempVariable;
+      tempVariable = tempVariable.nextNode;
+    }
+  };
 
   contains(value) {
-   
-       let tempVariable = this.head;
-       while(tempVariable !==null) {
-          if(tempVariable.value === value) {
-            return true;
-          } 
-          tempVariable = tempVariable.nextNode;
-
-       }
-
-       return false;
-
-  }
+    let tempVariable = this.head;
+    while (tempVariable !== null) {
+      if (tempVariable.value === value) {
+        return true;
+      }
+      tempVariable = tempVariable.nextNode;
+    }
+    return false;
+  };
 
   find(value) {
-      let index = 0;
+    let index = 0;
+    let tempVariable = this.head;
 
-      let tempVariable = this.head
-      for(let i = 0;i<index+1;i++) {
-
-          if(tempVariable === null) {
-            return null;
-          }
-
-          if(tempVariable.value === value) {
-            return index;
-          }
-          else {
-          tempVariable = tempVariable.nextNode;
-          index++;
-          }         
+    for (let i = 0; i < index + 1; i++) {
+      if (tempVariable === null) {
+        return null;
       }
+      if (tempVariable.value === value) {
+        return index;
+      } else {
+        tempVariable = tempVariable.nextNode;
+        index++;
+      }
+    }
+  };
+
+  toString() {
+    let string = "";
+    let tempVariable = this.head;
+    while (tempVariable !== null) {
+      string = string + ` (${tempVariable.value}) ->`;
+      tempVariable = tempVariable.nextNode;
+    }
+    return `${string} null`;
   }
-
-    toString() {
-      let string = "";
-            let tempVariable = this.head;
-            while(tempVariable !== null) {
-              string = string + ` (${tempVariable.value}) ->`
-              tempVariable = tempVariable.nextNode;
-            }
-            
-            return string + ` null`;
-    }  
-}
-
-
+};
 
 class Node {
   constructor(value = null, nextNode = null) {
     this.value = value;
     this.nextNode = nextNode;
   }
-}
+};
 
-//creating/initializing a linkedlist
+// initialization of linked list!
 
 const list = new LinkedList();
-
 list.append("dog");
 list.append("cat");
 list.append("parrot");
